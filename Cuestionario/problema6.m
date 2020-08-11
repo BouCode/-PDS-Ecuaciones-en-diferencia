@@ -1,0 +1,28 @@
+clear all;
+close all; 
+clc;
+a = [1];
+T = input ('Ingrese el valor de T: ');
+x = [zeros (1, 10) 1 zeros (1, 50)];
+n = -10:50;
+p = T .*n + 2 *T;
+q = T .*n - 5 *T;
+k = length (q);
+b = zeros (k);
+b = p;
+y = filter (b, a, x);
+subplot (2, 1, 1);
+stem (n, y);
+title ('h[n] es respuesta al impulso de y[n]');
+a = [1];
+n = 0:40;
+p = T .*n + 2 *T;
+q = T .*n - 5 *T;
+k = length (q);
+b = zeros (k);
+b = p;
+x1 = cos (pi * 5000 * 0.5 * n) .* [ones (1, 41)];
+y1 = filter (b, a, x1);
+subplot (2, 1, 2);
+stem (n, y1);
+title ('"y" discreta')
